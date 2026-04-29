@@ -9,7 +9,13 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                git 'https://github.com/knVeerendra/demo1.git'
+                checkout([
+                    $class: 'GitSCM',
+                    branches: [[name: '*/main']],
+                    userRemoteConfigs: [[
+                        url: 'https://github.com/knVeerendra/demo1.git'
+                    ]]
+                ])
             }
         }
 
